@@ -6,23 +6,16 @@ public class Heightmap : MonoBehaviour {
 
     public int seed;
     public float[,] map;
-
-    public int x_;
-    public int y_;
-
-	private void Start ()
-    {
-		
-	}
-	
+    public int height;
+    public int width;
 
     private void OnDrawGizmos()
     {
-        for (int x = 0; x < transform.localScale.x - 1; x++)
+        for (int x = 0; x < height; x++)
         {
-            for (int y = 0; y < transform.localScale.y - 1; y++)
+            for (int y = 0; y < width; y++)
             {
-                //Gizmos.color = height[x, y] == 1 ? Color.black : Color.white;
+                Gizmos.color = map[x, y] >= 0.5 ? Color.black : Color.white;
                 Gizmos.DrawCube(new Vector3(transform.position.x + x, transform.position.y + y), Vector3.one);
             }
         }
@@ -31,18 +24,20 @@ public class Heightmap : MonoBehaviour {
 
     private void OnValidate()
     {
+        height = height < 0 ? 0 : height;
+        width = width < 0 ? 0 : width;
         GenerateHeightmap();
     }
 
     private void GenerateHeightmap()
     {
         Random.InitState(seed);
-        map = new float[(int)transform.localScale.x + 1, (int)transform.localScale.y + 1];
-        for (int x = 0; x < transform.localScale.x; x++)
+        map = new float[height + 1, width + 1]; //inclusive
+        for (int x = 0; x < height; x++)
         {
-            for (int y = 0; y < transform.localScale.y; y++)
+            for (int y = 0; y < width; y++)
             {
-                map[x, y] = Random.Range(0, 1);
+                map[x, y] = Random.value;
             }
         }
     }
