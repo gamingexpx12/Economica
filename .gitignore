@@ -35,4 +35,4 @@ sysinfo.txt
 *.unitypackage
 
 # Scenes - need to be backed up another way
-/Assets/Scenes
+/Assets/Scenes/
