@@ -21,7 +21,10 @@ public static class MeshGenerator {
         {
             for (int x = 0; x < width; x += meshSimiplificationIncrement)
             {
-                meshData.vertices[vertexIndex] = new Vector3(topLeftX + x, heightCurve.Evaluate(heightMap[x, y]) * heightMultiplier, topLeftZ - y);
+                float calcVertexHeight = heightCurve.Evaluate(heightMap[x, y]) * heightMultiplier;
+                float vertexHeight     = RoundNum(Mathf.FloorToInt(calcVertexHeight), 5);
+
+                meshData.vertices[vertexIndex] = new Vector3(topLeftX + x, vertexHeight, topLeftZ - y);
                 meshData.uvs[vertexIndex] = new Vector2(x/ (float)width, y/(float) height); 
 
                 if (x < width - 1 && y < height - 1)
@@ -35,6 +38,12 @@ public static class MeshGenerator {
         }
 
         return meshData;
+    }
+
+    private static int RoundNum(int num, int round)
+    {
+        int rem = num % 5;
+        return rem >= round ? (num - rem + round) : (num - rem);
     }
 }
 
