@@ -20,7 +20,7 @@ public class EndlessTerrain : MonoBehaviour {
     int chunksVisibleInViewDst;
 
     Dictionary<Vector2, TerrainChunk> terrainChunkDictionary = new Dictionary<Vector2, TerrainChunk>();
-    List<TerrainChunk> terrainChunksVisibleLastUpdate = new List<TerrainChunk>();
+    static List<TerrainChunk> terrainChunksVisibleLastUpdate = new List<TerrainChunk>();
 
     private void Start()
     {
@@ -65,10 +65,6 @@ public class EndlessTerrain : MonoBehaviour {
                 if (terrainChunkDictionary.ContainsKey(viewedChunkCoord))
                 {
                     terrainChunkDictionary[viewedChunkCoord].UpdateTerrainChunk();
-                    if (terrainChunkDictionary[viewedChunkCoord].Visibility)
-                    {
-                        terrainChunksVisibleLastUpdate.Add(terrainChunkDictionary[viewedChunkCoord]);
-                    }
                 }
                 else
                 {
@@ -171,6 +167,8 @@ public class EndlessTerrain : MonoBehaviour {
                         }
 
                     }
+
+                    terrainChunksVisibleLastUpdate.Add(this);
                 }
             }
             
