@@ -17,10 +17,10 @@ public class MouseCameraMove : MonoBehaviour {
 
     void Update () {
         Vector3 pos = transform.position;
-        float x = pos.x + Input.GetAxis(_xAxis) * Time.deltaTime * MetersPerSecond;
+        float x = Input.GetAxis(_xAxis) * Time.deltaTime * MetersPerSecond;
         float y = 0; //TODO: Set to terrain height with raycast
-        float z = pos.z + Input.GetAxis(_yAxis) * Time.deltaTime * MetersPerSecond;
-        transform.position = new Vector3(x, y, z);
+        float z = Input.GetAxis(_yAxis) * Time.deltaTime * MetersPerSecond;
+        transform.Translate(x, y, z);
 
         if (Input.GetAxis(_rotatekey) >= 1)
         {
@@ -30,7 +30,7 @@ public class MouseCameraMove : MonoBehaviour {
             Vector3 camEuler = cameraTransform.localEulerAngles;
             cameraTransform.Rotate(cameraTransform.right, camPitch * Time.deltaTime);
             Vector3 newCamEuler = camEuler + new Vector3(camPitch * Time.deltaTime, 0, 0);
-            cameraTransform.localEulerAngles = newCamEuler; //Camera gets pitch
+            cameraTransform.localEulerAngles = newCamEuler; //Camera gets pitch, dosen't work all that well.
             transform.localEulerAngles += new Vector3(0, baseYaw * Time.deltaTime, 0); //Base gets yaw
         }
         
