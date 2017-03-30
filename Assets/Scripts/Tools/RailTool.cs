@@ -5,6 +5,7 @@ using UnityEngine;
 public class RailTool : MonoBehaviour {
     public Vector3 cursorpositoion;
     public GameObject cursorObject;
+    public Material ghostMaterial;
     /// <summary>
     /// Terrain Layer
     /// </summary>
@@ -12,7 +13,14 @@ public class RailTool : MonoBehaviour {
 
     private void Start()
     {
-        Instantiate(cursorObject, transform);
+        GameObject cursor = Instantiate(cursorObject, transform);
+        MeshRenderer[] meshes = cursor.GetComponentsInChildren<MeshRenderer>();
+
+        foreach (MeshRenderer m in meshes)
+        {
+            m.material = ghostMaterial;
+        }
+        
     }
 
 
