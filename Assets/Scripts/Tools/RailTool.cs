@@ -18,6 +18,8 @@ public class RailTool : MonoBehaviour {
     private void Start()
     {
         _lineDrawer = GetComponent<LineDrawer>();
+        _lineDrawer.begin = cursorPosition;
+        _lineDrawer.end = cursorPosition;
         GameObject cursor = Instantiate(cursorObject, transform);
         MeshRenderer[] meshes = cursor.GetComponentsInChildren<MeshRenderer>();
 
@@ -30,7 +32,10 @@ public class RailTool : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetButtonDown(UseButton))
+        transform.position = cursorPosition;
+        _lineDrawer.end = cursorPosition;
+
+        if (!Input.GetButton(UseButton))
         {
             _lineDrawer.begin = cursorPosition;
         }
@@ -42,7 +47,7 @@ public class RailTool : MonoBehaviour {
         if (Physics.Raycast(ray, out hit, 50f, _layerMask))
         {
 
-            transform.position = _RoundVector(hit.point, 2);
+            cursorPosition = _RoundVector(hit.point, 2);
         }
 	}
 

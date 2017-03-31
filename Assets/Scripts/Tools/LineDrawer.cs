@@ -11,8 +11,21 @@ public class LineDrawer: MonoBehaviour
         Z,
     }
 
-    public Vector3 begin;
-    public Vector3 end;
+    public Vector3 begin
+    {
+        get { return _begin; }
+        set { print(value); _begin = value; }
+        
+    }
+    public Vector3 end
+    {
+        get { return _end; }
+        set { print(value); _end = value; }
+
+    }
+
+    Vector3 _begin;
+    Vector3 _end;
 
     public void DrawLine()
     {
