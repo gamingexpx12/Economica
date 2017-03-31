@@ -8,18 +8,16 @@ public class RailTool : MonoBehaviour {
     public Material ghostMaterial;
 
     public string UseButton;
-    bool UseKeyHeld;
+    bool _useKeyHeld;
     /// <summary>
     /// Terrain Layer
     /// </summary>
     int _layerMask = 1 << 8;
     LineDrawer _lineDrawer;
 
-
-
     private void Start()
     {
-
+        _lineDrawer = GetComponent<LineDrawer>();
         GameObject cursor = Instantiate(cursorObject, transform);
         MeshRenderer[] meshes = cursor.GetComponentsInChildren<MeshRenderer>();
 
@@ -30,8 +28,15 @@ public class RailTool : MonoBehaviour {
         
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown(UseButton))
+        {
+            _lineDrawer.begin = cursorpositoion;
+        }
+    }
 
-	void FixedUpdate () {
+    void FixedUpdate () {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 50f, _layerMask))
