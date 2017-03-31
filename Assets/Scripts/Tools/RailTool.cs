@@ -6,10 +6,14 @@ public class RailTool : MonoBehaviour {
     public Vector3 cursorpositoion;
     public GameObject cursorObject;
     public Material ghostMaterial;
+
+    public string UseButton;
+    bool UseKeyHeld;
     /// <summary>
     /// Terrain Layer
     /// </summary>
     int _layerMask = 1 << 8;
+    GameObject[] Line;
 
     private void Start()
     {
@@ -57,5 +61,17 @@ public class RailTool : MonoBehaviour {
             return ((num + (step / 2)) / step) * step;
         else
             return ((num - (step / 2)) / step) * step;
+    }
+
+    private class LineDrawer
+    {
+        Vector3 _start;
+        Vector3 _end;
+
+        public void DrawLine()
+        {
+            Debug.DrawLine(_start, _end);
+            
+        }
     }
 }
