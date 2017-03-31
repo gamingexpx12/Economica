@@ -5,11 +5,9 @@ using UnityEngine;
 
 public class LineDrawer: MonoBehaviour
 {
-    public enum Axis
-    {
-        X,
-        Z,
-    }
+    public int distance;
+    public int numInstances;
+    public int grid = 2;
 
     public Vector3 begin
     {
@@ -26,6 +24,7 @@ public class LineDrawer: MonoBehaviour
 
     Vector3 _begin;
     Vector3 _end;
+    public Vector3 _diff;
 
     public void DrawLine()
     {
@@ -35,8 +34,13 @@ public class LineDrawer: MonoBehaviour
 
     private void Update()
     {
-        //DrawLine();
+        _diff = _end - _begin;
+        int furthestAxis = Mathf.RoundToInt(Mathf.Max(Mathf.Abs(_diff.x), Mathf.Abs(_diff.z)));
+        distance = furthestAxis / grid + 1;
+        
+        
     }
+    
 
     private void OnDrawGizmosSelected()
     {
