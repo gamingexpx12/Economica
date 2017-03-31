@@ -36,7 +36,7 @@ public class RailTool : MonoBehaviour {
         }
     }
 
-    void FixedUpdate () {
+    private void FixedUpdate () {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 50f, _layerMask))
