@@ -14,13 +14,13 @@ public class LineDrawer: MonoBehaviour
     public Vector3 begin
     {
         get { return _begin; }
-        set { print(value); _begin = value; }
+        set { _begin = value; }
         
     }
     public Vector3 end
     {
         get { return _end; }
-        set { print(value); _end = value; }
+        set { _end = value; }
 
     }
 
