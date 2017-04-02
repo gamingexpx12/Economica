@@ -37,8 +37,8 @@ public class LineDrawer: MonoBehaviour
         _diff = _end - _begin;
         int furthestAxis = Mathf.RoundToInt(Mathf.Max(Mathf.Abs(_diff.x), Mathf.Abs(_diff.z)));
         distance = furthestAxis / grid + 1;
-        
-        
+
+       
     }
     
 
@@ -47,5 +47,13 @@ public class LineDrawer: MonoBehaviour
         Gizmos.DrawCube(begin, Vector3.one);
         Gizmos.DrawCube(end, Vector3.one);
         Gizmos.DrawLine(begin, end);
+
+        for (int tile = 0; tile < distance; tile++)
+        {
+            float tilePosF = (float)tile / (float)distance;
+            Vector3 tilePos = Vector3.Lerp(_begin, _end, tilePosF);
+            Gizmos.DrawSphere(tilePos, 0.3f);
+            print(tilePosF);
+        }
     }
 }
