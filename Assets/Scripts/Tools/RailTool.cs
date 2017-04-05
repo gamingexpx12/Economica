@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Will become a child tool object that encapsulates rail building.
+/// </summary>
 public class RailTool : MonoBehaviour {
     public Vector3 cursorPosition;
     public GameObject cursorObject;
