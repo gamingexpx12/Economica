@@ -22,14 +22,7 @@ public class RailTool : MonoBehaviour {
         _lineDrawer = GetComponent<LineDrawer>();
         _lineDrawer.begin = cursorPosition;
         _lineDrawer.end = cursorPosition;
-        GameObject cursor = Instantiate(cursorObject, transform);
-        MeshRenderer[] meshes = cursor.GetComponentsInChildren<MeshRenderer>();
-
-        foreach (MeshRenderer m in meshes)
-        {
-            m.material = ghostMaterial;
-        }
-        
+        _lineDrawer.model = cursorObject;
     }
 
     private void Update()

@@ -4,27 +4,32 @@ using UnityEngine;
 
 public class Ghosting : MonoBehaviour {
 
-    Vector3 cursorPosition;
-    GameObject GhostModel;
     public Material ghostMaterial;
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    GameObject[] _ghosts;
 
     public void Ghost(GameObject modelPrefab, Vector3[] positions)
     {
+        _ghosts = new GameObject[positions.Length];
+        for (int p = 0; p < positions.Length; p++)
+        {
+            GameObject ghost = Instantiate(modelPrefab, positions[p], new Quaternion(), transform);
+            _ghosts[p] = ghost;
+
+            MeshRenderer[] meshes = ghost.GetComponentsInChildren<MeshRenderer>();
+
+            foreach (MeshRenderer m in meshes)
+            {
+                m.material = ghostMaterial;
+            }
+        }
 
     }
 
     public void RemoveGhosts()
     {
-
+        for (int ghost = 0; ghost < _ghosts.Length; ghost++)
+        {
+            Destroy(_ghosts[ghost]);
+        }
     }
 }
