@@ -8,7 +8,6 @@ using UnityEngine;
 public class RailTool : MonoBehaviour {
     public Vector3 cursorPosition;
     public GameObject cursorObject;
-    public Material ghostMaterial;
 
     public string UseButton;
     /// <summary>
