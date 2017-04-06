@@ -9,6 +9,7 @@ public class Ghosting : MonoBehaviour {
 
     public void Ghost(GameObject modelPrefab, Vector3[] positions)
     {
+        _RemoveGhosts();
         _ghosts = new GameObject[positions.Length];
         for (int p = 0; p < positions.Length; p++)
         {
@@ -25,11 +26,14 @@ public class Ghosting : MonoBehaviour {
 
     }
 
-    public void RemoveGhosts()
+    private void _RemoveGhosts()
     {
-        for (int ghost = 0; ghost < _ghosts.Length; ghost++)
+        if (_ghosts != null)
         {
-            Destroy(_ghosts[ghost]);
+            for (int ghost = 0; ghost < _ghosts.Length; ghost++)
+            {
+                Destroy(_ghosts[ghost]);
+            } 
         }
     }
 }
