@@ -8,6 +8,7 @@ using UnityEngine;
 public class RailTool : MonoBehaviour {
     public Vector3 cursorPosition;
     public GameObject cursorObject;
+    public float raycastDistance = 100f;
 
     public string UseButton;
     /// <summary>
@@ -38,7 +39,7 @@ public class RailTool : MonoBehaviour {
     private void FixedUpdate () {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 50f, _layerMask))
+        if (Physics.Raycast(ray, out hit, raycastDistance, _layerMask))
         {
 
             cursorPosition = _SnapToGrid(hit.point, 2);

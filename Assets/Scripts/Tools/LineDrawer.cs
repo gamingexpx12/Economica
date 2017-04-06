@@ -33,6 +33,7 @@ public class LineDrawer: MonoBehaviour
 
     Vector3 _begin;
     Vector3 _end;
+    Quaternion _direction;
     public Vector3 _diff;
 
     public void DrawLine()
@@ -50,10 +51,10 @@ public class LineDrawer: MonoBehaviour
         _diff = _end - _begin;
         int furthestAxis = Mathf.RoundToInt(Mathf.Max(Mathf.Abs(_diff.x), Mathf.Abs(_diff.z)));
         distance = furthestAxis / grid;
-        SetInstances();
+        _SetInstances();
         numInstances = _ghosts.Length;
-
-        _ghoster.Ghost(_model, _ghosts);
+        _direction = _GetDirection();
+        _ghoster.Ghost(_model, _direction, _ghosts);
 
     }
     
@@ -74,7 +75,7 @@ public class LineDrawer: MonoBehaviour
         }
     }
 
-    private void SetInstances()
+    private void _SetInstances()
     {
         if (SharedLibrary.VectorLocationEqual(_begin, _end))
         {
@@ -92,5 +93,12 @@ public class LineDrawer: MonoBehaviour
 
             
         }
+    }
+
+    private Quaternion _GetDirection()
+    {
+        var result = new Quaternion();
+        result.SetLookRotation(_diff);
+        return result;
     }
 }
