@@ -76,7 +76,7 @@ public class LineDrawer: MonoBehaviour
 
     private void SetInstances()
     {
-        if (_begin == _end)
+        if (SharedLibrary.VectorLocationEqual(_begin, _end))
         {
             _ghosts = new Vector3[1];
             _ghosts[0] = _begin;
