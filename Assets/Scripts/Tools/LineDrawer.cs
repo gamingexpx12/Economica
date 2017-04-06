@@ -51,6 +51,8 @@ public class LineDrawer: MonoBehaviour
         int furthestAxis = Mathf.RoundToInt(Mathf.Max(Mathf.Abs(_diff.x), Mathf.Abs(_diff.z)));
         distance = furthestAxis / grid;
         SetInstances();
+        numInstances = _ghosts.Length;
+
         _ghoster.Ghost(_model, _ghosts);
 
     }
@@ -58,16 +60,14 @@ public class LineDrawer: MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        if (_ghosts == null)
+        {
+            return;
+        }
         Gizmos.DrawCube(begin, Vector3.one);
         Gizmos.DrawCube(end, Vector3.one);
         Gizmos.DrawLine(begin, end);
         
-        if (_begin == _end)
-        {
-            Gizmos.DrawSphere(_begin, 0.3f);
-            return;
-        }
-
         for (int i = 0; i < _ghosts.Length; i++)
         {
             Gizmos.DrawSphere(_ghosts[i], 0.3f);
@@ -76,6 +76,12 @@ public class LineDrawer: MonoBehaviour
 
     private void SetInstances()
     {
+        if (_begin == _end)
+        {
+            _ghosts = new Vector3[1];
+            _ghosts[0] = _begin;
+            return;
+        }
         int dist = distance + 1;
         _ghosts = new Vector3[dist];
         for (int tile = 0; tile < dist; tile++)
@@ -83,6 +89,8 @@ public class LineDrawer: MonoBehaviour
             float tilePosF = (float)tile / (float)distance;
             Vector3 tilePos = Vector3.Lerp(_begin, _end, tilePosF);
             _ghosts[tile] = tilePos;
+
+            
         }
     }
 }
