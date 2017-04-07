@@ -8,6 +8,7 @@ public class LineDrawer: MonoBehaviour
     public int distance;
     public int numInstances;
     public int grid = 2;
+    public Vector3 inTilePositon;
     Vector3[] _ghosts;
     Ghosting _ghoster;
     GameObject _model;
@@ -55,6 +56,7 @@ public class LineDrawer: MonoBehaviour
         numInstances = _ghosts.Length;
         _direction = _GetDirection();
         _ghoster.Ghost(_model, _direction, _ghosts);
+        print(inTilePositon);
 
     }
     
@@ -98,7 +100,18 @@ public class LineDrawer: MonoBehaviour
     private Quaternion _GetDirection()
     {
         var result = new Quaternion();
-        result.SetLookRotation(_diff);
-        return result;
+        if (SharedLibrary.VectorLocationEqual(_begin, _end))
+        {
+            var cardinal = SharedLibrary.CardinalDirection(inTilePositon);
+            result.SetLookRotation(cardinal);
+            return result;
+        }
+        else
+        {
+            result.SetLookRotation(_diff);
+            return result;
+        }
+        
+        
     }
 }

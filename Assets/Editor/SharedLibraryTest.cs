@@ -23,4 +23,42 @@ public class SharedLibraryTest {
         result = SharedLibrary.VectorLocationEqual(a, b);
         Assert.IsFalse(result, "Did not recognise different X or Z");
     }
+
+    [Test]
+    public void CardinalDirectionBasicTest()
+    {
+        var N = SharedLibrary.North;
+        var W = SharedLibrary.West;
+        var S = SharedLibrary.South;
+        var E = SharedLibrary.East;
+        var result = Vector3.zero;
+
+        result = SharedLibrary.CardinalDirection(N);
+        Assert.AreEqual(N, result, "Failed to assert North");
+
+        result = SharedLibrary.CardinalDirection(W);
+        Assert.AreEqual(W, result, "Failed to assert West");
+
+        result = SharedLibrary.CardinalDirection(S);
+        Assert.AreEqual(S, result, "Failed to assert South");
+
+        result = SharedLibrary.CardinalDirection(E);
+        Assert.AreEqual(E, result, "Failed to assert East");
+    }
+
+    [Test]
+    public void CardinalDirectionAdvancedTest()
+    {
+        var N = SharedLibrary.North;
+        var W = SharedLibrary.West;
+        var S = SharedLibrary.South;
+        var E = SharedLibrary.East;
+        var result = Vector3.zero;
+
+        result = SharedLibrary.CardinalDirection(new Vector3(-0.7f, 0f, 0.5f));
+        Assert.AreEqual(S, result, "Failed to assert " + result +" as South");
+
+        result = SharedLibrary.CardinalDirection(new Vector3(0.5f, 0f, -0.7f));
+        Assert.AreEqual(E, result, "Failed to assert " + result + " as East");
+    }
 }

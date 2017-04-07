@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class RailTool : MonoBehaviour {
     public Vector3 cursorPosition;
+    public Vector3 cursorPositionWithinTile;
     public GameObject cursorObject;
     public float raycastDistance = 100f;
 
@@ -23,12 +24,14 @@ public class RailTool : MonoBehaviour {
         _lineDrawer.begin = cursorPosition;
         _lineDrawer.end = cursorPosition;
         _lineDrawer.model = cursorObject;
+        
     }
 
     private void Update()
     {
         transform.position = cursorPosition;
         _lineDrawer.end = cursorPosition;
+        _lineDrawer.inTilePositon = cursorPositionWithinTile;
 
         if (!Input.GetButton(UseButton))
         {
@@ -43,6 +46,7 @@ public class RailTool : MonoBehaviour {
         {
 
             cursorPosition = _SnapToGrid(hit.point, 2);
+            cursorPositionWithinTile = hit.point - cursorPosition;
         }
 	}
 
