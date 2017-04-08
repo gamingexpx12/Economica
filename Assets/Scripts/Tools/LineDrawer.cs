@@ -69,7 +69,7 @@ public class LineDrawer: MonoBehaviour
         int furthestAxis = Mathf.RoundToInt(Mathf.Max(Mathf.Abs(_diff.x), Mathf.Abs(_diff.z)));
         distanceTile = furthestAxis / grid;
         distanceReal = furthestAxis;
-        debugPosition = _begin + _SnapToCardinal(_end, distanceReal);
+        debugPosition = _begin + _SnapToCardinal(_diff, distanceReal);
 
         locationFuncs._SetInstances(_begin, debugPosition);
         numInstances = _ghosts.Length;
