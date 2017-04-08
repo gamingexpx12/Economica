@@ -145,7 +145,7 @@ public class LineDrawer: MonoBehaviour
         public override Quaternion _GetDirection(Vector3 begin, Vector3 end)
         {
             var result = new Quaternion();
-            result.SetLookRotation(parent._diff);
+            result.SetLookRotation(SharedLibrary.CardinalDirection(parent._diff));
             return result;
         }
 
