@@ -97,45 +97,6 @@ public class LineDrawer: MonoBehaviour
         }
     }
 
-    private void _SetInstances(Vector3 begin, Vector3 end)
-    {
-        if (SharedLibrary.VectorLocationEqual(begin, end))
-        {
-            _ghosts = new Vector3[1];
-            _ghosts[0] = begin;
-            return;
-        }
-        int dist = distanceTile + 1;
-        _ghosts = new Vector3[dist];
-
-        for (int tile = 0; tile < dist; tile++)
-        {
-            float tilePosF = (float)tile / (float)distanceTile;
-            Vector3 tilePos = Vector3.Lerp(begin, end, tilePosF);
-            _ghosts[tile] = tilePos;
-
-            
-        }
-    }
-
-    private Quaternion _GetDirection( Vector3 begin, Vector3 end)
-    {
-        var result = new Quaternion();
-        if (SharedLibrary.VectorLocationEqual(begin, end))
-        {
-            var cardinal = SharedLibrary.CardinalDirection(inTilePositon);
-            result.SetLookRotation(cardinal);
-            return result;
-        }
-        else
-        {
-            result.SetLookRotation(_diff);
-            return result;
-        }
-        
-        
-    }
-
     private Vector3 _SnapToCardinal(Vector3 vector, int distance)
     {
         Vector3 cardinal = SharedLibrary.CardinalDirection(vector);
