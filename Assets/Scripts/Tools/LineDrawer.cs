@@ -5,10 +5,16 @@ using UnityEngine;
 [RequireComponent(typeof(Ghosting))]
 public class LineDrawer: MonoBehaviour
 {
-    public int distance;
+    /// <summary>
+    /// Distance from furthest point in tiles.
+    /// </summary>
+    public int distanceTile;
+    public int distanceReal;
     public int numInstances;
     public int grid = 2;
     public Vector3 inTilePositon;
+    public Vector3 debugPosition;
+    public Vector3 debugEnd;
     Vector3[] _ghosts;
     Ghosting _ghoster;
     GameObject _model;
@@ -51,12 +57,16 @@ public class LineDrawer: MonoBehaviour
     {
         _diff = _end - _begin;
         int furthestAxis = Mathf.RoundToInt(Mathf.Max(Mathf.Abs(_diff.x), Mathf.Abs(_diff.z)));
-        distance = furthestAxis / grid;
-        _SetInstances();
+        distanceTile = furthestAxis / grid;
+        distanceReal = furthestAxis;
+        debugPosition = _begin + _SnapToCardinal(_end, distanceReal);
+
+        _SetInstances(_begin, debugPosition);
         numInstances = _ghosts.Length;
-        _direction = _GetDirection();
+        _direction = _GetDirection(_begin, debugPosition);
         _ghoster.Ghost(_model, _direction, _ghosts);
-        print(inTilePositon);
+        
+        print(_end);
 
     }
     
@@ -77,30 +87,31 @@ public class LineDrawer: MonoBehaviour
         }
     }
 
-    private void _SetInstances()
+    private void _SetInstances(Vector3 begin, Vector3 end)
     {
-        if (SharedLibrary.VectorLocationEqual(_begin, _end))
+        if (SharedLibrary.VectorLocationEqual(begin, end))
         {
             _ghosts = new Vector3[1];
-            _ghosts[0] = _begin;
+            _ghosts[0] = begin;
             return;
         }
-        int dist = distance + 1;
+        int dist = distanceTile + 1;
         _ghosts = new Vector3[dist];
+
         for (int tile = 0; tile < dist; tile++)
         {
-            float tilePosF = (float)tile / (float)distance;
-            Vector3 tilePos = Vector3.Lerp(_begin, _end, tilePosF);
+            float tilePosF = (float)tile / (float)distanceTile;
+            Vector3 tilePos = Vector3.Lerp(begin, end, tilePosF);
             _ghosts[tile] = tilePos;
 
             
         }
     }
 
-    private Quaternion _GetDirection()
+    private Quaternion _GetDirection( Vector3 begin, Vector3 end)
     {
         var result = new Quaternion();
-        if (SharedLibrary.VectorLocationEqual(_begin, _end))
+        if (SharedLibrary.VectorLocationEqual(begin, end))
         {
             var cardinal = SharedLibrary.CardinalDirection(inTilePositon);
             result.SetLookRotation(cardinal);
@@ -113,5 +124,11 @@ public class LineDrawer: MonoBehaviour
         }
         
         
+    }
+
+    private Vector3 _SnapToCardinal(Vector3 vector, int distance)
+    {
+        Vector3 cardinal = SharedLibrary.CardinalDirection(vector);
+        return cardinal * distance;
     }
 }
