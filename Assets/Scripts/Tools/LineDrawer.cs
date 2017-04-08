@@ -45,11 +45,6 @@ public class LineDrawer: MonoBehaviour
     LocationBasedFunctions diffFuncs;
     LocationBasedFunctions locationFuncs;
 
-    public void DrawLine()
-    {
-        Debug.DrawLine(begin, end);
-
-    }
     private void Start()
     {
         sameFuncs = new SameLocation(this);
