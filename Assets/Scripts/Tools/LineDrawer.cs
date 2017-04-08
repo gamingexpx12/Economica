@@ -73,7 +73,7 @@ public class LineDrawer: MonoBehaviour
 
         locationFuncs._SetInstances(_begin, debugPosition);
         numInstances = _ghosts.Length;
-        _direction = _GetDirection(_begin, debugPosition);
+        _direction = locationFuncs._GetDirection(_begin, debugPosition);
         _ghoster.Ghost(_model, _direction, _ghosts);
         
         print(_end);
@@ -161,7 +161,10 @@ public class LineDrawer: MonoBehaviour
 
         public override Quaternion _GetDirection(Vector3 begin, Vector3 end)
         {
-            throw new NotImplementedException();
+            var result = new Quaternion();
+            var cardinal = SharedLibrary.CardinalDirection(parent.inTilePositon);
+            result.SetLookRotation(cardinal);
+            return result;
         }
 
         public override void _SetInstances(Vector3 begin, Vector3 end)
@@ -180,7 +183,9 @@ public class LineDrawer: MonoBehaviour
 
         public override Quaternion _GetDirection(Vector3 begin, Vector3 end)
         {
-            throw new NotImplementedException();
+            var result = new Quaternion();
+            result.SetLookRotation(parent._diff);
+            return result;
         }
 
         public override void _SetInstances(Vector3 begin, Vector3 end)
