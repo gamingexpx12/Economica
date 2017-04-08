@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Ghosting))]
 public class LineDrawer: MonoBehaviour
@@ -15,9 +13,7 @@ public class LineDrawer: MonoBehaviour
     public Vector3 inTilePositon;
     public Vector3 debugPosition;
     public Vector3 debugEnd;
-    Vector3[] _ghosts;
-    Ghosting _ghoster;
-    GameObject _model;
+    public Vector3 _diff;
 
     public Vector3 begin
     {
@@ -41,7 +37,10 @@ public class LineDrawer: MonoBehaviour
     Vector3 _begin;
     Vector3 _end;
     Quaternion _direction;
-    public Vector3 _diff;
+    Vector3[] _ghosts;
+    Ghosting _ghoster;
+    GameObject _model;
+
     LocationBasedFunctions sameFuncs;
     LocationBasedFunctions diffFuncs;
     LocationBasedFunctions locationFuncs;
@@ -75,12 +74,8 @@ public class LineDrawer: MonoBehaviour
         numInstances = _ghosts.Length;
         _direction = locationFuncs._GetDirection(_begin, debugPosition);
         _ghoster.Ghost(_model, _direction, _ghosts);
-        
-        print(_end);
-
     }
     
-
     private void OnDrawGizmosSelected()
     {
         if (_ghosts == null)
