@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingleTileDrawer : MonoBehaviour {
+public static class SingleTileDrawer {
 
-	public LineData MakeSingleTile(Vector3 worldPosition, Vector3 inTilePosition)
+	public static LineData MakeSingleTile(Vector3 worldPosition, Vector3 inTilePosition)
     {
         LineData sqareData = new LineData();
 
