@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class SingleTileDrawer : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public LineDrawer.LineData MakeSingleTile(Vector3 position)
+    {
+        LineDrawer.LineData sqareData = new LineDrawer.LineData();
+
+        return sqareData;
+    }
 }
