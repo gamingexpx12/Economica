@@ -11,9 +11,9 @@ public class LineDrawer: MonoBehaviour
     public int numInstances;
     public int grid = 2;
     public Vector3 inTilePositon;
-    public Vector3 debugPosition;
+    public Vector3 snappedEnd;
     public Vector3 debugEnd;
-    public Vector3 _diff;
+    public Vector3 localEnd;
 
     public Vector3 begin
     {
@@ -45,6 +45,28 @@ public class LineDrawer: MonoBehaviour
     LocationBasedFunctions diffFuncs;
     LocationBasedFunctions locationFuncs;
 
+    public LineData MakeLine(Vector3 begin, Vector3 end)
+    {
+        LineData line = new LineData();
+        //Pick diffrent functions if were only drawing one instance.
+        locationFuncs = SharedLibrary.VectorLocationEqual(begin, end) ? sameFuncs : diffFuncs;
+
+        localEnd = end - begin;
+        int furthestAxis = Mathf.RoundToInt(Mathf.Max(Mathf.Abs(localEnd.x), Mathf.Abs(localEnd.z)));
+        distanceTile = furthestAxis / grid;
+        distanceReal = furthestAxis;
+        snappedEnd = begin + _SnapToCardinal(localEnd, distanceReal);
+
+        locationFuncs._SetInstances(begin, snappedEnd);
+        numInstances = _ghosts.Length;
+        _direction = locationFuncs._GetDirection(begin, snappedEnd);
+        _ghoster.Ghost(_model, _direction, _ghosts);
+
+        line.instances = _ghosts;
+        line.direction = _direction;
+        return line;
+    }
+
     private void Start()
     {
         sameFuncs = new SameLocation(this);
@@ -56,18 +78,19 @@ public class LineDrawer: MonoBehaviour
 
     private void Update()
     {
+        return;
         //Pick diffrent functions if were only drawing one instance.
         locationFuncs = SharedLibrary.VectorLocationEqual(_begin, _end) ? sameFuncs : diffFuncs;
 
-        _diff = _end - _begin;
-        int furthestAxis = Mathf.RoundToInt(Mathf.Max(Mathf.Abs(_diff.x), Mathf.Abs(_diff.z)));
+        localEnd = _end - _begin;
+        int furthestAxis = Mathf.RoundToInt(Mathf.Max(Mathf.Abs(localEnd.x), Mathf.Abs(localEnd.z)));
         distanceTile = furthestAxis / grid;
         distanceReal = furthestAxis;
-        debugPosition = _begin + _SnapToCardinal(_diff, distanceReal);
+        snappedEnd = _begin + _SnapToCardinal(localEnd, distanceReal);
 
-        locationFuncs._SetInstances(_begin, debugPosition);
+        locationFuncs._SetInstances(_begin, snappedEnd);
         numInstances = _ghosts.Length;
-        _direction = locationFuncs._GetDirection(_begin, debugPosition);
+        _direction = locationFuncs._GetDirection(_begin, snappedEnd);
         _ghoster.Ghost(_model, _direction, _ghosts);
     }
     
@@ -135,7 +158,7 @@ public class LineDrawer: MonoBehaviour
         public override Quaternion _GetDirection(Vector3 begin, Vector3 end)
         {
             var result = new Quaternion();
-            result.SetLookRotation(SharedLibrary.CardinalDirection(parent._diff));
+            result.SetLookRotation(SharedLibrary.CardinalDirection(parent.localEnd));
             return result;
         }
 
@@ -153,5 +176,12 @@ public class LineDrawer: MonoBehaviour
 
             }
         }
+    }
+
+    [System.Serializable]
+    public struct LineData
+    {
+        public Vector3[] instances;
+        public Quaternion direction;
     }
 }
