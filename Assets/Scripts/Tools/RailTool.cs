@@ -31,7 +31,15 @@ public class RailTool : MonoBehaviour {
     {
         transform.position = cursorPosition;
         _lineDrawer.inTilePositon = cursorPositionWithinTile;
-        lineData = _lineDrawer.MakeLine(cursorDragStart, cursorPosition);
+        if (SharedLibrary.VectorLocationEqual(cursorDragStart, cursorPosition))
+        {
+            lineData = SingleTileDrawer.MakeSingleTile(cursorPosition, cursorPositionWithinTile);
+        }
+        else
+        {
+            lineData = _lineDrawer.MakeLine(cursorDragStart, cursorPosition);
+        }
+        
         if (!Input.GetButton(UseButton))
         {
             cursorDragStart = cursorPosition;
