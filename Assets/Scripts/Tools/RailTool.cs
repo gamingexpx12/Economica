@@ -11,7 +11,7 @@ public class RailTool : MonoBehaviour {
     public Vector3 cursorPositionWithinTile;
     public GameObject cursorObject;
     public float raycastDistance = 100f;
-    public LineDrawer.LineData lineData;
+    public LineData lineData;
 
     public string UseButton;
     /// <summary>

@@ -160,10 +160,5 @@ public class LineDrawer: MonoBehaviour
         }
     }
 
-    [System.Serializable]
-    public struct LineData
-    {
-        public Vector3[] instances;
-        public Quaternion direction;
-    }
+
 }

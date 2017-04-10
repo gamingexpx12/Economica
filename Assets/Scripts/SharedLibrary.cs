@@ -59,3 +59,9 @@ public static class SharedLibrary
         return North;
     }
 }
+[System.Serializable]
+public struct LineData
+{
+    public Vector3[] instances;
+    public Quaternion direction;
+}

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SingleTileDrawer : MonoBehaviour {
 
-	public LineDrawer.LineData MakeSingleTile(Vector3 position)
+	public LineData MakeSingleTile(Vector3 position)
     {
-        LineDrawer.LineData sqareData = new LineDrawer.LineData();
+        LineData sqareData = new LineData();
 
         return sqareData;
     }
