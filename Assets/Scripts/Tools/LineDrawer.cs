@@ -75,24 +75,6 @@ public class LineDrawer: MonoBehaviour
 
         _ghoster = GetComponent<Ghosting>();
     }
-
-    private void Update()
-    {
-        return;
-        //Pick diffrent functions if were only drawing one instance.
-        locationFuncs = SharedLibrary.VectorLocationEqual(_begin, _end) ? sameFuncs : diffFuncs;
-
-        localEnd = _end - _begin;
-        int furthestAxis = Mathf.RoundToInt(Mathf.Max(Mathf.Abs(localEnd.x), Mathf.Abs(localEnd.z)));
-        distanceTile = furthestAxis / grid;
-        distanceReal = furthestAxis;
-        snappedEnd = _begin + _SnapToCardinal(localEnd, distanceReal);
-
-        locationFuncs._SetInstances(_begin, snappedEnd);
-        numInstances = _ghosts.Length;
-        _direction = locationFuncs._GetDirection(_begin, snappedEnd);
-        _ghoster.Ghost(_model, _direction, _ghosts);
-    }
     
     private void OnDrawGizmosSelected()
     {
