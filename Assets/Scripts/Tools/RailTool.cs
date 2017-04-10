@@ -7,9 +7,11 @@ using UnityEngine;
 /// </summary>
 public class RailTool : MonoBehaviour {
     public Vector3 cursorPosition;
+    public Vector3 cursorDragStart;
     public Vector3 cursorPositionWithinTile;
     public GameObject cursorObject;
     public float raycastDistance = 100f;
+    public LineData lineData;
 
     public string UseButton;
     /// <summary>
@@ -21,8 +23,6 @@ public class RailTool : MonoBehaviour {
     private void Start()
     {
         _lineDrawer = GetComponent<LineDrawer>();
-        _lineDrawer.begin = cursorPosition;
-        _lineDrawer.end = cursorPosition;
         _lineDrawer.model = cursorObject;
         
     }
@@ -30,12 +30,19 @@ public class RailTool : MonoBehaviour {
     private void Update()
     {
         transform.position = cursorPosition;
-        _lineDrawer.end = cursorPosition;
         _lineDrawer.inTilePositon = cursorPositionWithinTile;
-
+        if (SharedLibrary.VectorLocationEqual(cursorDragStart, cursorPosition))
+        {
+            lineData = SingleTileDrawer.MakeSingleTile(cursorPosition, cursorPositionWithinTile);
+        }
+        else
+        {
+            lineData = _lineDrawer.MakeLine(cursorDragStart, cursorPosition);
+        }
+        
         if (!Input.GetButton(UseButton))
         {
-            _lineDrawer.begin = cursorPosition;
+            cursorDragStart = cursorPosition;
         }
     }
 
@@ -60,5 +67,13 @@ public class RailTool : MonoBehaviour {
         //print(x / snap);
         //x = snap* Mathf.Round(location.x / snap);
         return new Vector3(x, y, z);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        for (int i = 0; i < lineData.instances.Length; i++)
+        {
+            Gizmos.DrawSphere(lineData.instances[i], 0.3f);
+        }
     }
 }
