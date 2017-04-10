@@ -1,11 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Generates noisemaps.
+/// </summary>
 public static class Noise
 {
     public enum NormalizeMode { Local, Global};
-
+    /// <summary>
+    /// Method for making a noisemap. Should be thread safe.
+    /// </summary>
+    /// <param name="mapWidthEnd"></param>
+    /// <param name="mapHeightEnd"></param>
+    /// <param name="seed"></param>
+    /// <param name="offset"></param>
+    /// <param name="scale"></param>
+    /// <param name="normalizeMode"></param>
+    /// <param name="octaves">how many times it will run, each a smaller wave</param>
+    /// <param name="persistance">How much will each octave matter</param>
+    /// <param name="lacunarity"></param>
+    /// <returns></returns>
     public static float[,] GenerateNoiseMap
         (
         int mapWidthEnd, 
