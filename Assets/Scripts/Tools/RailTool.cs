@@ -5,6 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Will become a child tool object that encapsulates rail building.
 /// </summary>
+[RequireComponent(typeof(Ghosting))]
 public class RailTool : MonoBehaviour {
     public Vector3 cursorPosition;
     public Vector3 cursorDragStart;
@@ -19,18 +20,26 @@ public class RailTool : MonoBehaviour {
     /// </summary>
     int _layerMask = 1 << 8;
     LineDrawer _lineDrawer;
+    Ghosting _ghosting;
 
     private void Start()
     {
         _lineDrawer = GetComponent<LineDrawer>();
         _lineDrawer.model = cursorObject;
-        
+
+        _ghosting = GetComponent<Ghosting>();
     }
 
     private void Update()
     {
         transform.position = cursorPosition;
         _lineDrawer.inTilePositon = cursorPositionWithinTile;
+
+        if (!Input.GetButton(UseButton))
+        {
+            cursorDragStart = cursorPosition;
+        }
+
         if (SharedLibrary.VectorLocationEqual(cursorDragStart, cursorPosition))
         {
             lineData = SingleTileDrawer.MakeSingleTile(cursorPosition, cursorPositionWithinTile);
@@ -39,11 +48,9 @@ public class RailTool : MonoBehaviour {
         {
             lineData = _lineDrawer.MakeLine(cursorDragStart, cursorPosition);
         }
-        
-        if (!Input.GetButton(UseButton))
-        {
-            cursorDragStart = cursorPosition;
-        }
+        _ghosting.Ghost(cursorObject, lineData.direction, lineData.instances);
+
+
     }
 
     private void FixedUpdate () {
