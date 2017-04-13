@@ -9,7 +9,7 @@ public static class SingleTileDrawer {
         LineData sqareData = new LineData();
 
         var direction = new Quaternion();
-        var cardinal = SharedLibrary.CardinalDirection(inTilePosition);
+        var cardinal = SharedLibrary.CardinalDirection(inTilePosition, SharedLibrary.North);
         direction.SetLookRotation(cardinal);
         sqareData.direction = direction;
 
