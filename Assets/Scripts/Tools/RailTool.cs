@@ -13,7 +13,7 @@ public class RailTool : MonoBehaviour {
     public GameObject cursorObject;
     public float raycastDistance = 100f;
     public LineData lineData;
-    [EnumFlag]
+    [EnumFlag("Direction Mask")]
     public DirectionMask directionMask;
 
     public string UseButton;
