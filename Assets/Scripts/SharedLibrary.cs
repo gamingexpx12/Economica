@@ -69,7 +69,6 @@ public struct LineData
 [System.Serializable]
 public enum DirectionMask
 {
-    None = 0,
     North = 1,
     South = 2,
     West = 4,
