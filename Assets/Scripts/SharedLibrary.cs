@@ -28,7 +28,7 @@ public static class SharedLibrary
             return false;
         }
     }
-    public static Vector3 CardinalDirection(Vector3 direction, bool CanZero = false)
+    public static Vector3 CardinalDirection(Vector3 direction, Vector3 failure)
     {
         float north = direction.x >= 0 ? direction.x : 0;
         float south = direction.x <  0 ? Mathf.Abs(direction.x) : 0;
@@ -51,12 +51,7 @@ public static class SharedLibrary
             return East;
         }
 
-        //Default
-        if (CanZero)
-        {
-            return Vector3.zero;
-        }
-        return North;
+        return failure;
     }
 }
 [System.Serializable]

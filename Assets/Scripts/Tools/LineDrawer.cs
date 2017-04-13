@@ -90,7 +90,7 @@ public class LineDrawer: MonoBehaviour
 
     private Vector3 _SnapToCardinal(Vector3 vector, int distance)
     {
-        Vector3 cardinal = SharedLibrary.CardinalDirection(vector);
+        Vector3 cardinal = SharedLibrary.CardinalDirection(vector, SharedLibrary.North);
         return cardinal * distance;
     }
 
@@ -114,7 +114,7 @@ public class LineDrawer: MonoBehaviour
         public override Quaternion _GetDirection(Vector3 begin, Vector3 end)
         {
             var result = new Quaternion();
-            var cardinal = SharedLibrary.CardinalDirection(parent.inTilePositon);
+            var cardinal = SharedLibrary.CardinalDirection(parent.inTilePositon, SharedLibrary.North);
             result.SetLookRotation(cardinal);
             return result;
         }
@@ -136,7 +136,7 @@ public class LineDrawer: MonoBehaviour
         public override Quaternion _GetDirection(Vector3 begin, Vector3 end)
         {
             var result = new Quaternion();
-            result.SetLookRotation(SharedLibrary.CardinalDirection(parent.localEnd));
+            result.SetLookRotation(SharedLibrary.CardinalDirection(parent.localEnd, SharedLibrary.North));
             return result;
         }
 
