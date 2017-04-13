@@ -65,3 +65,17 @@ public struct LineData
     public Vector3[] instances;
     public Quaternion direction;
 }
+[System.Flags]
+[System.Serializable]
+public enum DirectionMask
+{
+    None = 0,
+    North = 1,
+    South = 2,
+    West = 4,
+    East = 8,
+    NW = 16,
+    NE = 32,
+    SW = 64,
+    SE = 128
+}
