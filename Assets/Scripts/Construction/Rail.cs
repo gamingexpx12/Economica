@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Rail : MonoBehaviour {
-    [EnumFlag]
+    [EnumFlag("Track")]
+    [SerializeField]
     TrackDirection track;
 	// Use this for initialization
 	void Start () {
@@ -12,7 +13,8 @@ public class Rail : MonoBehaviour {
 	
 }
 
-[System.Flags]
+[Flags]
+[Serializable]
 public enum TrackDirection
 {
     NS = 1,
