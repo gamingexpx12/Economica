@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 [RequireComponent(typeof(Ghosting))]
 public class RailTool : MonoBehaviour {
+    public GameSettings gameSettings;
     public Vector3 cursorPosition;
     public Vector3 cursorDragStart;
     public Vector3 cursorPositionWithinTile;
