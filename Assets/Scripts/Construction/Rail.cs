@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Rail : MonoBehaviour {
-    public int railType;
+    public RailType railType;
     [EnumFlag("Track")]
     public TrackDirection track;
+
+    Transform[] meshes;
 	// Use this for initialization
 	void Start () {
 		
 	}
 	
+    void UpdateTrack()
+    {
+
+    }
 }
 
 [Flags]
