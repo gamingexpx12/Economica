@@ -20,7 +20,7 @@ class EnumFlagDrawer : PropertyDrawer
         EditorGUI.BeginProperty(position, label, property);
         Enum enumNew = EditorGUI.EnumMaskField(position, propName, targetEnum);
 
-        position = EditorGUI.PrefixLabel(position, label);
+        //position = EditorGUI.PrefixLabel(position, label); // SAFE
         property.intValue = (int)Convert.ChangeType(enumNew, targetEnum.GetType());
         EditorGUI.EndProperty();
     }
