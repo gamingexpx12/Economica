@@ -2,7 +2,9 @@
 using System.Reflection;
 using UnityEngine;
 using UnityEditor;
-
+/// <summary>
+/// Property drawer class for EnumFlag
+/// </summary>
 [CustomPropertyDrawer(typeof(EnumFlagAttribute))]
 class EnumFlagDrawer : PropertyDrawer
 {
