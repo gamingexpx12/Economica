@@ -6,6 +6,6 @@ using UnityEditor;
 [CreateAssetMenu(fileName = "RailType", menuName = "Data/RailType")]
 public class RailType : ScriptableObject {
 
-    public Mesh vertical;
+    public Mesh[] meshes;
 
 }

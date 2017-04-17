@@ -10,7 +10,7 @@ public class Rail : MonoBehaviour {
     Transform[] meshes;
 	// Use this for initialization
 	void Start () {
-		
+        meshes = new Transform[railType.meshes.Length];
 	}
 	
     void UpdateTrack()
