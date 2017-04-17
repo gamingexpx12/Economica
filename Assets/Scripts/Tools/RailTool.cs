@@ -30,6 +30,7 @@ public class RailTool : MonoBehaviour {
         _raycastDistance = gameSettings.ScreenToWorldRaycastLength;
         _lineDrawer = GetComponent<LineDrawer>();
         _lineDrawer.model = cursorObject;
+        _lineDrawer.grid = gameSettings.GridSize;
 
         _ghosting = GetComponent<Ghosting>();
     }
@@ -44,6 +45,7 @@ public class RailTool : MonoBehaviour {
             cursorDragStart = cursorPosition;
         }
 
+        //Choose which drawing method to use.
         if (SharedLibrary.VectorLocationEqual(cursorDragStart, cursorPosition))
         {
             lineData = SingleTileDrawer.MakeSingleTile(cursorPosition, cursorPositionWithinTile);
