@@ -7,10 +7,10 @@ public class Rail : MonoBehaviour {
     [EnumFlag("Track")]
     public TrackDirection track;
 
-    Transform[] meshes;
+    Transform[] meshObjects;
 	// Use this for initialization
 	void Start () {
-        meshes = new Transform[railType.meshes.Length];
+        meshObjects = new Transform[railType.meshes.Length];
 	}
 	
     void UpdateTrack()
