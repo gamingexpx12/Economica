@@ -28,12 +28,17 @@ public static class SharedLibrary
             return false;
         }
     }
-    public static Vector3 CardinalDirection(Vector3 direction, bool CanZero = false)
+    public static Vector3 CardinalDirection(Vector3 direction)
+    {
+        return CardinalDirection(direction, North);
+    }
+
+    public static Vector3 CardinalDirection(Vector3 direction, Vector3 failure)
     {
         float north = direction.x >= 0 ? direction.x : 0;
-        float south = direction.x <  0 ? Mathf.Abs(direction.x) : 0;
-        float west  = direction.z >= 0 ? direction.z : 0;
-        float east  = direction.z <  0 ? Mathf.Abs(direction.z) : 0;
+        float south = direction.x < 0 ? Mathf.Abs(direction.x) : 0;
+        float west = direction.z >= 0 ? direction.z : 0;
+        float east = direction.z < 0 ? Mathf.Abs(direction.z) : 0;
         if (north > west & north > east)
         {
             return North;
@@ -51,12 +56,7 @@ public static class SharedLibrary
             return East;
         }
 
-        //Default
-        if (CanZero)
-        {
-            return Vector3.zero;
-        }
-        return North;
+        return failure;
     }
 }
 [System.Serializable]
@@ -64,4 +64,17 @@ public struct LineData
 {
     public Vector3[] instances;
     public Quaternion direction;
+}
+[System.Flags]
+[System.Serializable]
+public enum DirectionMask
+{
+    North = 1,
+    South = 2,
+    West = 4,
+    East = 8,
+    NW = 16,
+    NE = 32,
+    SW = 64,
+    SE = 128
 }

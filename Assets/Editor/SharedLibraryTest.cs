@@ -46,7 +46,7 @@ public class SharedLibraryTest {
         result = SharedLibrary.CardinalDirection(E);
         Assert.AreEqual(E, result, "Failed to assert East");
 
-        result = SharedLibrary.CardinalDirection(Z, true);
+        result = SharedLibrary.CardinalDirection(Z, Vector3.zero);
         Assert.AreEqual(Z, result, "Failed to assert Zero");
     }
 

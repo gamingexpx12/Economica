@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Ghosting))]
 public class LineDrawer: MonoBehaviour
 {
     /// <summary>
@@ -38,7 +37,6 @@ public class LineDrawer: MonoBehaviour
     Vector3 _end;
     Quaternion _direction;
     Vector3[] _ghosts;
-    Ghosting _ghoster;
     GameObject _model;
 
     LocationBasedFunctions sameFuncs;
@@ -60,7 +58,6 @@ public class LineDrawer: MonoBehaviour
         locationFuncs._SetInstances(begin, snappedEnd);
         numInstances = _ghosts.Length;
         _direction = locationFuncs._GetDirection(begin, snappedEnd);
-        _ghoster.Ghost(_model, _direction, _ghosts);
 
         line.instances = _ghosts;
         line.direction = _direction;
@@ -73,7 +70,6 @@ public class LineDrawer: MonoBehaviour
         diffFuncs = new DifferentLocation(this);
         locationFuncs = sameFuncs;
 
-        _ghoster = GetComponent<Ghosting>();
     }
     
     private void OnDrawGizmosSelected()
@@ -94,7 +90,7 @@ public class LineDrawer: MonoBehaviour
 
     private Vector3 _SnapToCardinal(Vector3 vector, int distance)
     {
-        Vector3 cardinal = SharedLibrary.CardinalDirection(vector);
+        Vector3 cardinal = SharedLibrary.CardinalDirection(vector, SharedLibrary.North);
         return cardinal * distance;
     }
 
@@ -118,7 +114,7 @@ public class LineDrawer: MonoBehaviour
         public override Quaternion _GetDirection(Vector3 begin, Vector3 end)
         {
             var result = new Quaternion();
-            var cardinal = SharedLibrary.CardinalDirection(parent.inTilePositon);
+            var cardinal = SharedLibrary.CardinalDirection(parent.inTilePositon, SharedLibrary.North);
             result.SetLookRotation(cardinal);
             return result;
         }
@@ -140,7 +136,7 @@ public class LineDrawer: MonoBehaviour
         public override Quaternion _GetDirection(Vector3 begin, Vector3 end)
         {
             var result = new Quaternion();
-            result.SetLookRotation(SharedLibrary.CardinalDirection(parent.localEnd));
+            result.SetLookRotation(SharedLibrary.CardinalDirection(parent.localEnd, SharedLibrary.North));
             return result;
         }
 
