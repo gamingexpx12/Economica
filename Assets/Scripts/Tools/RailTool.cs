@@ -12,7 +12,6 @@ public class RailTool : MonoBehaviour {
     public Vector3 cursorDragStart;
     public Vector3 cursorPositionWithinTile;
     public GameObject cursorObject;
-    public float raycastDistance = 100f;
     public LineData lineData;
     [EnumFlag("Direction Mask")]
     public DirectionMask directionMask;
@@ -24,9 +23,11 @@ public class RailTool : MonoBehaviour {
     int _layerMask = 1 << 8;
     LineDrawer _lineDrawer;
     Ghosting _ghosting;
+    float _raycastDistance;
 
     private void Start()
     {
+        _raycastDistance = gameSettings.ScreenToWorldRaycastLength;
         _lineDrawer = GetComponent<LineDrawer>();
         _lineDrawer.model = cursorObject;
 
@@ -59,10 +60,10 @@ public class RailTool : MonoBehaviour {
     private void FixedUpdate () {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, raycastDistance, _layerMask))
+        if (Physics.Raycast(ray, out hit, _raycastDistance, _layerMask))
         {
 
-            cursorPosition = _SnapToGrid(hit.point, 2);
+            cursorPosition = _SnapToGrid(hit.point, gameSettings.GridSize);
             cursorPositionWithinTile = hit.point - cursorPosition;
         }
 	}
