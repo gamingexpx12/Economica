@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Rail : MonoBehaviour {
+    public int railType;
     [EnumFlag("Track")]
-    [SerializeField]
-    TrackDirection track;
+    public TrackDirection track;
 	// Use this for initialization
 	void Start () {
 		
