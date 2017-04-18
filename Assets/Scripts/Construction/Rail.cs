@@ -9,7 +9,16 @@ public class Rail : MonoBehaviour {
     public Transform mesh;
     [SerializeField]
     Transform[] meshObjects;
-	// Use this for initialization
+	
+    public static GameObject MakeRailInstance(GameObject prefab, Transform parent, Vector3 position, TrackDirection direction)
+    {
+        var instance = Instantiate(prefab, position, new Quaternion(), parent);
+        var railComp = instance.GetComponent<Rail>();
+        railComp.track = direction;
+
+        return instance;
+    }
+
 	void Start () {
         meshObjects = new Transform[railType.meshes.Length];
 	}
