@@ -13,8 +13,8 @@ public class RailTool : MonoBehaviour {
     public Vector3 cursorPositionWithinTile;
     public GameObject cursorObject;
     public LineData lineData;
-    [EnumFlag("Direction Mask")]
-    public DirectionMask directionMask;
+    [EnumFlag]
+    public TrackDirection direction = TrackDirection.NS | TrackDirection.EW;
 
     public string UseButton;
     /// <summary>
@@ -54,8 +54,8 @@ public class RailTool : MonoBehaviour {
         {
             lineData = _lineDrawer.MakeLine(cursorDragStart, cursorPosition);
         }
-        _ghosting.Ghost(cursorObject, lineData.direction, lineData.instances);
-
+        //_ghosting.Ghost(cursorObject, lineData.direction, lineData.instances);
+        _ghosting.CreateGhostTrack(cursorObject, direction, lineData.instances);
 
     }
 

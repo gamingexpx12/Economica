@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,11 +9,22 @@ public class Ghosting : MonoBehaviour {
 
     public void Ghost(GameObject modelPrefab, Quaternion direction, Vector3[] positions)
     {
+        _CreateGhosts(positions, (int p) => Instantiate(modelPrefab, positions[p], direction, transform));
+
+    }
+
+    public void CreateGhostTrack(GameObject prefab, TrackDirection direction, Vector3[] positions)
+    {
+        _CreateGhosts(positions, (int p) => Rail.MakeRailInstance(prefab, transform, positions[p], direction));
+    }
+
+    private void _CreateGhosts(Vector3[] positions, Func<int, GameObject> instance)
+    {
         _RemoveGhosts();
         _ghosts = new GameObject[positions.Length];
         for (int p = 0; p < positions.Length; p++)
         {
-            GameObject ghost = Instantiate(modelPrefab, positions[p], direction, transform);
+            GameObject ghost = instance(p);
             _ghosts[p] = ghost;
 
             MeshRenderer[] meshes = ghost.GetComponentsInChildren<MeshRenderer>();
@@ -23,7 +34,6 @@ public class Ghosting : MonoBehaviour {
                 m.material = ghostMaterial;
             }
         }
-
     }
 
     private void _RemoveGhosts()
