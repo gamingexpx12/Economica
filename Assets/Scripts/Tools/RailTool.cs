@@ -13,8 +13,8 @@ public class RailTool : MonoBehaviour {
     public Vector3 cursorPositionWithinTile;
     public GameObject cursorObject;
     public LineData lineData;
-    [EnumFlag("Direction Mask")]
-    public DirectionMask directionMask;
+    [EnumFlag]
+    public TrackDirection direction;
 
     public string UseButton;
     /// <summary>
