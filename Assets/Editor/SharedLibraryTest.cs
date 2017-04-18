@@ -65,4 +65,12 @@ public class SharedLibraryTest {
         result = SharedLibrary.CardinalDirection(new Vector3(0.5f, 0f, -0.7f));
         Assert.AreEqual(E, result, "Failed to assert " + result + " as East");
     }
+
+    [Test]
+    public void CardinalToTrackDirectionTest()
+    {
+        var N = SharedLibrary.North;
+        var trackNS = SharedLibrary.CardinalToTrackDirection(N);
+        Assert.AreEqual(TrackDirection.NS, trackNS);
+    }
 }

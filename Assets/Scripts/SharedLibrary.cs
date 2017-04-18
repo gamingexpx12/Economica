@@ -58,12 +58,20 @@ public static class SharedLibrary
 
         return failure;
     }
+
+    public static TrackDirection CardinalToTrackDirection( Vector3 cardinal)
+    {
+        if (cardinal == North | cardinal == South) { return TrackDirection.NS; }
+        if (cardinal == East  | cardinal == West)  { return TrackDirection.EW; }
+        return 0;
+    }
 }
 [System.Serializable]
 public struct LineData
 {
     public Vector3[] instances;
     public Quaternion direction;
+    public TrackDirection trackDirection;
 }
 [System.Flags]
 [System.Serializable]
