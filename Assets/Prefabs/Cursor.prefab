@@ -57,7 +57,7 @@ MonoBehaviour:
   cursorPosition: {x: 0, y: 0, z: 0}
   cursorDragStart: {x: 0, y: 0, z: 0}
   cursorPositionWithinTile: {x: 0, y: 0, z: 0}
-  cursorObject: {fileID: 100002, guid: 8cafd45298836054ab6a6f452ac79475, type: 3}
+  cursorObject: {fileID: 100004, guid: a3f1da859974ea1489c72d70978238a0, type: 3}
   lineData:
     instances: []
     direction: {x: 0, y: 0, z: 0, w: 0}
@@ -77,7 +77,7 @@ MonoBehaviour:
   distanceTile: 0
   distanceReal: 0
   numInstances: 0
-  grid: 2
+  grid: 4
   inTilePositon: {x: 0, y: 0, z: 0}
   snappedEnd: {x: 0, y: 0, z: 0}
   debugEnd: {x: 0, y: 0, z: 0}

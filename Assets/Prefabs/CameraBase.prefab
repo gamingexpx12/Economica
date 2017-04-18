@@ -134,8 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80e808b2c7b5694189efa637527066c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MetersPerSecond: 10
-  RotateSensitivity: 30
+  MetersPerSecond: 40
+  RotateSensitivity: 200
   MainCamera: {fileID: 20182566176988806}
 --- !u!124 &124478469940175136
 Behaviour:
