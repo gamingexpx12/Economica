@@ -60,7 +60,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1536710367183470
 GameObject:
   m_ObjectHideFlags: 1
@@ -77,7 +77,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1587504126910726
 GameObject:
   m_ObjectHideFlags: 1
@@ -501,7 +501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   railType: {fileID: 11400000, guid: dfcf51c8406be1b4ca0daeae5a8b3756, type: 2}
-  track: 3
+  editorTrack: 0
   mesh: {fileID: 4255349920954794}
   meshObjects:
   - {fileID: 4238876600997760}

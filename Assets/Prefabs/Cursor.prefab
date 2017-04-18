@@ -57,11 +57,12 @@ MonoBehaviour:
   cursorPosition: {x: 0, y: 0, z: 0}
   cursorDragStart: {x: 0, y: 0, z: 0}
   cursorPositionWithinTile: {x: 0, y: 0, z: 0}
-  cursorObject: {fileID: 100004, guid: a3f1da859974ea1489c72d70978238a0, type: 3}
+  cursorObject: {fileID: 1449195395040506, guid: 2aedfb094eb2d154499ee37cdef4b99b,
+    type: 2}
   lineData:
     instances: []
     direction: {x: 0, y: 0, z: 0, w: 0}
-  directionMask: 0
+  direction: 1
   UseButton: Fire1
 --- !u!114 &114817296827600902
 MonoBehaviour:
