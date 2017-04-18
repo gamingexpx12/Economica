@@ -4,23 +4,34 @@ using UnityEngine;
 
 public class Rail : MonoBehaviour {
     public RailType railType;
+    /// <summary>
+    /// Only use in unity editor.
+    /// </summary>
     [EnumFlag("Track")]
-    public TrackDirection track;
+    public TrackDirection editorTrack;
     public Transform mesh;
     [SerializeField]
     Transform[] meshObjects;
+
+    public TrackDirection track
+    {
+        get { return editorTrack;}
+        set { editorTrack = value; UpdateTrack(); }
+    }
 	
     public static GameObject MakeRailInstance(GameObject prefab, Transform parent, Vector3 position, TrackDirection direction)
     {
         var instance = Instantiate(prefab, position, new Quaternion(), parent);
         var railComp = instance.GetComponent<Rail>();
+
+        if (railComp == null) { throw new UnityException("Could not find Rail component"); }
         railComp.track = direction;
 
         return instance;
     }
 
 	void Start () {
-        meshObjects = new Transform[railType.meshes.Length];
+        
 	}
 
     void OnValidate()
@@ -29,12 +40,12 @@ public class Rail : MonoBehaviour {
     }
     void UpdateTrack()
     {
-        bool containsNS = (track & TrackDirection.NS) != 0;
-        bool containsEW = (track & TrackDirection.EW) != 0;
-        bool containsNW = (track & TrackDirection.NW) != 0;
-        bool containsNE = (track & TrackDirection.NE) != 0;
-        bool containsSW = (track & TrackDirection.SW) != 0;
-        bool containsSE = (track & TrackDirection.SE) != 0;
+        bool containsNS = (editorTrack & TrackDirection.NS) != 0;
+        bool containsEW = (editorTrack & TrackDirection.EW) != 0;
+        bool containsNW = (editorTrack & TrackDirection.NW) != 0;
+        bool containsNE = (editorTrack & TrackDirection.NE) != 0;
+        bool containsSW = (editorTrack & TrackDirection.SW) != 0;
+        bool containsSE = (editorTrack & TrackDirection.SE) != 0;
 
         meshObjects[0].gameObject.SetActive(containsNS);
         meshObjects[1].gameObject.SetActive(containsEW);
