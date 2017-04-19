@@ -55,7 +55,7 @@ public class RailTool : MonoBehaviour {
             lineData = _lineDrawer.MakeLine(cursorDragStart, cursorPosition);
         }
         //_ghosting.Ghost(cursorObject, lineData.direction, lineData.instances);
-        _ghosting.CreateGhostTrack(cursorObject, direction, lineData.instances);
+        _ghosting.CreateGhostTrack(cursorObject, lineData.trackDirection, lineData.instances);
 
     }
 

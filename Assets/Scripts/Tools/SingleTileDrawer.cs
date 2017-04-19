@@ -12,6 +12,7 @@ public static class SingleTileDrawer {
         var cardinal = SharedLibrary.CardinalDirection(inTilePosition, SharedLibrary.North);
         direction.SetLookRotation(cardinal);
         sqareData.direction = direction;
+        sqareData.trackDirection = SharedLibrary.CardinalToTrackDirection(cardinal);
 
         var instance = new Vector3[1];
         instance[0] = worldPosition;
