@@ -48,7 +48,7 @@ public class RailTool : MonoBehaviour {
         //Choose which drawing method to use.
         if (SharedLibrary.VectorLocationEqual(cursorDragStart, cursorPosition))
         {
-            lineData = SingleTileDrawer.MakeSingleTile(cursorPosition, cursorPositionWithinTile);
+            lineData = Selection.SelectTile(cursorPosition, cursorPositionWithinTile);
         }
         else
         {
