@@ -65,22 +65,10 @@ public class RailTool : MonoBehaviour {
         if (Physics.Raycast(ray, out hit, _raycastDistance, _layerMask))
         {
 
-            cursorPosition = _SnapToGrid(hit.point, gameSettings.GridSize);
+            cursorPosition = SharedLibrary.SnapToGrid(hit.point, gameSettings.GridSize);
             cursorPositionWithinTile = hit.point - cursorPosition;
         }
 	}
-
-    private Vector3 _SnapToGrid(Vector3 location, int snap)
-    {
-        int x = snap * Mathf.RoundToInt(location.x / snap);
-        int y = snap * Mathf.RoundToInt(location.y / snap);
-        int z = snap * Mathf.RoundToInt(location.z / snap);
-
-        //x = x % snap ;
-        //print(x / snap);
-        //x = snap* Mathf.Round(location.x / snap);
-        return new Vector3(x, y, z);
-    }
 
     private void OnDrawGizmosSelected()
     {
