@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class SingleTileDrawer {
+public static class Selection {
 
-	public static LineData MakeSingleTile(Vector3 worldPosition, Vector3 inTilePosition)
+    public static LineData SelectTile(Vector3 worldPosition, Vector3 inTilePosition)
     {
         LineData sqareData = new LineData();
 
@@ -18,5 +18,15 @@ public static class SingleTileDrawer {
         instance[0] = worldPosition;
         sqareData.instances = instance;
         return sqareData;
+    }
+
+    public static LineData SelectLine(Vector3 beginPosition, Vector3 endPosition)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public static LineData SelectArea(Vector3 beginPosition, Vector3 endPosition)
+    {
+        throw new System.NotImplementedException();
     }
 }

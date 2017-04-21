@@ -65,6 +65,15 @@ public static class SharedLibrary
         if (cardinal == East  | cardinal == West)  { return TrackDirection.EW; }
         return 0;
     }
+
+    public static Vector3 SnapToGrid(Vector3 location, int snap)
+    {
+        int x = snap * Mathf.RoundToInt(location.x / snap);
+        int y = snap * Mathf.RoundToInt(location.y / snap);
+        int z = snap * Mathf.RoundToInt(location.z / snap);
+
+        return new Vector3(x, y, z);
+    }
 }
 [System.Serializable]
 public struct LineData

@@ -61,6 +61,7 @@ public class LineDrawer: MonoBehaviour
 
         line.instances = _ghosts;
         line.direction = _direction;
+        line.trackDirection = _GetTrackDirection(localEnd);
         return line;
     }
 
@@ -92,6 +93,12 @@ public class LineDrawer: MonoBehaviour
     {
         Vector3 cardinal = SharedLibrary.CardinalDirection(vector, SharedLibrary.North);
         return cardinal * distance;
+    }
+
+    private TrackDirection _GetTrackDirection(Vector3 localEnd)
+    {
+        var cardinal = SharedLibrary.CardinalDirection(localEnd);
+        return SharedLibrary.CardinalToTrackDirection(cardinal);
     }
 
     private abstract class LocationBasedFunctions

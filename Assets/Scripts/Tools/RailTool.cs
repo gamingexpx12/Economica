@@ -48,14 +48,14 @@ public class RailTool : MonoBehaviour {
         //Choose which drawing method to use.
         if (SharedLibrary.VectorLocationEqual(cursorDragStart, cursorPosition))
         {
-            lineData = SingleTileDrawer.MakeSingleTile(cursorPosition, cursorPositionWithinTile);
+            lineData = Selection.SelectTile(cursorPosition, cursorPositionWithinTile);
         }
         else
         {
             lineData = _lineDrawer.MakeLine(cursorDragStart, cursorPosition);
         }
         //_ghosting.Ghost(cursorObject, lineData.direction, lineData.instances);
-        _ghosting.CreateGhostTrack(cursorObject, direction, lineData.instances);
+        _ghosting.CreateGhostTrack(cursorObject, lineData.trackDirection, lineData.instances);
 
     }
 
@@ -65,22 +65,10 @@ public class RailTool : MonoBehaviour {
         if (Physics.Raycast(ray, out hit, _raycastDistance, _layerMask))
         {
 
-            cursorPosition = _SnapToGrid(hit.point, gameSettings.GridSize);
+            cursorPosition = SharedLibrary.SnapToGrid(hit.point, gameSettings.GridSize);
             cursorPositionWithinTile = hit.point - cursorPosition;
         }
 	}
-
-    private Vector3 _SnapToGrid(Vector3 location, int snap)
-    {
-        int x = snap * Mathf.RoundToInt(location.x / snap);
-        int y = snap * Mathf.RoundToInt(location.y / snap);
-        int z = snap * Mathf.RoundToInt(location.z / snap);
-
-        //x = x % snap ;
-        //print(x / snap);
-        //x = snap* Mathf.Round(location.x / snap);
-        return new Vector3(x, y, z);
-    }
 
     private void OnDrawGizmosSelected()
     {
