@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrackMovement : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+/// <summary>
+/// Class for snapping a train to the track.
+/// </summary>
+public class TrackMovement : MonoBehaviour
+{
+    public Transform frontAxle;
+    public Transform rearAxle;
+    public Transform train;
 }
