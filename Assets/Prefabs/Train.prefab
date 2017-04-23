@@ -88,7 +88,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1116008471187156}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.24, z: 0}
+  m_LocalPosition: {x: 1.5, y: 0.24, z: 0}
   m_LocalScale: {x: 0.28827056, y: 0.7207714, z: 0.28827015}
   m_Children: []
   m_Father: {fileID: 4489376064682358}
@@ -101,7 +101,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1793836502180140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -8}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4811968387471918}
@@ -117,7 +117,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1417250329980266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 0.86, z: 0}
+  m_LocalPosition: {x: 0, y: 0.86, z: 0}
   m_LocalScale: {x: 4, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4489376064682358}
@@ -130,7 +130,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361625449715736}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -3, y: 0.24, z: -0}
+  m_LocalPosition: {x: -1.5, y: 0.24, z: -0}
   m_LocalScale: {x: 0.28827056, y: 0.7207714, z: 0.28827015}
   m_Children: []
   m_Father: {fileID: 4489376064682358}
@@ -276,9 +276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b33521336d0e0084a80d9cc51866fb22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frontAxle: {fileID: 4191463654088130}
-  rearAxle: {fileID: 4811968387471918}
-  train: {fileID: 4751741232892378}
+  target: {fileID: 4489376064682358}
+  speed: 100
 --- !u!136 &136460598465851186
 CapsuleCollider:
   m_ObjectHideFlags: 1
