@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4271115426884020}
   - component: {fileID: 33028069252228952}
   - component: {fileID: 23767623122003032}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: NS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4672552111895012}
   - component: {fileID: 33358282380580264}
   - component: {fileID: 23667484657148786}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4676510014730240}
   - component: {fileID: 114651647711126918}
-  m_Layer: 8
+  - component: {fileID: 65310759310331984}
+  m_Layer: 9
   m_Name: NormalRail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +72,7 @@ GameObject:
   - component: {fileID: 4800400166029476}
   - component: {fileID: 33575729206897820}
   - component: {fileID: 23556477732800270}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +89,7 @@ GameObject:
   - component: {fileID: 4658843180219206}
   - component: {fileID: 33659838710006550}
   - component: {fileID: 23747915339389170}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +106,7 @@ GameObject:
   - component: {fileID: 4924918335581392}
   - component: {fileID: 33936997644990894}
   - component: {fileID: 23433335719700090}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: NW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +121,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4529253960270434}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Rail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +138,7 @@ GameObject:
   - component: {fileID: 4897440189628862}
   - component: {fileID: 33347874356426688}
   - component: {fileID: 23506972333283752}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: NE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -489,6 +490,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1638800371500810}
   m_Mesh: {fileID: 4300022, guid: a3f1da859974ea1489c72d70978238a0, type: 3}
+--- !u!65 &65310759310331984
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1449195395040506}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 4, z: 4}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!114 &114651647711126918
 MonoBehaviour:
   m_ObjectHideFlags: 1
