@@ -74,6 +74,19 @@ public static class SharedLibrary
 
         return new Vector3(x, y, z);
     }
+
+    public static Vector3 SnapToCardinal(Vector3 vector, int distance)
+    {
+        Vector3 cardinal = SharedLibrary.CardinalDirection(vector, SharedLibrary.North);
+        return cardinal * distance;
+    }
+
+    public static TrackDirection GetTrackDirection(Vector3 localEnd)
+    {
+        var cardinal = SharedLibrary.CardinalDirection(localEnd);
+        return SharedLibrary.CardinalToTrackDirection(cardinal);
+    }
+
 }
 [System.Serializable]
 public struct LineData

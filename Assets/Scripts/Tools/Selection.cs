@@ -26,16 +26,16 @@ public static class Selection {
         var localEnd = end - begin;
         int furthestAxis = Mathf.RoundToInt(Mathf.Max(Mathf.Abs(localEnd.x), Mathf.Abs(localEnd.z)));
         var distanceTile = furthestAxis / grid;
-        //distanceReal = furthestAxis;
-        //snappedEnd = begin + _SnapToCardinal(localEnd, distanceReal);
+        var distanceReal = furthestAxis;
+        var snappedEnd = begin + SharedLibrary.SnapToCardinal(localEnd, distanceReal);
 
-        //SetInstances(begin, snappedEnd);
-        //numInstances = _ghosts.Length;
-        //_direction = locationFuncs._GetDirection(begin, snappedEnd);
+        var ghosts = new Vector3[1];
+        ghosts[0] = begin;
+        var numInstances = ghosts.Length;
 
-        //line.instances = _ghosts;
-        //line.direction = _direction;
-        //line.trackDirection = _GetTrackDirection(localEnd);
+        line.instances = ghosts;
+        //line.direction = SharedLibrary.GetDirection(begin, snappedEnd);
+        line.trackDirection = SharedLibrary.GetTrackDirection(localEnd);
         return line;
     }
 
