@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 [ExecuteInEditMode]
@@ -9,14 +8,20 @@ public class Grid : MonoBehaviour
     public LayerMask unwalkableMask;
     public Vector2 gridWorldSize;
     [Range(0.1f, 100)]
-    public float nodeRadius;
     public List<Node> path;
     public bool updateGrid;
+    public GameSettings settings;
+
     Node[,] grid;
+    float nodeRadius;
     float nodeDiameter { get { return nodeRadius * 2; } }
     int gridSizeX { get { return Mathf.RoundToInt(gridWorldSize.x / nodeDiameter); } }
     int gridSizeY { get { return Mathf.RoundToInt(gridWorldSize.y / nodeDiameter); } }
 
+    void Awake()
+    {
+        nodeRadius = settings.GridSize / 2;
+    }
     void Start()
     {
         CreateGrid();
@@ -40,7 +45,7 @@ public class Grid : MonoBehaviour
             for (int y = 0; y < gridSizeY; y++)
             {
                 Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
-                bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unwalkableMask));
+                bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius - 0.1f, unwalkableMask));
                 grid[x, y] = new Node(walkable, worldPoint, x, y);
             }
         }
@@ -101,7 +106,6 @@ public class Grid : MonoBehaviour
         }
         else
         {
-
             if (grid != null)
             {
                 foreach (Node n in grid)
@@ -110,12 +114,6 @@ public class Grid : MonoBehaviour
                     {
                         Gizmos.color = Color.red;
                         Gizmos.DrawWireCube(n.worldPosition, Vector3.one * (nodeDiameter - .05f));
-                        
-                    }
-                    else
-                    {
-                        Gizmos.color = Color.white;
-                        Gizmos.DrawWireCube(n.worldPosition, Vector3.one * (nodeDiameter - .05f));
                     }
 
                     if (path != null && path.Contains(n))
@@ -123,9 +121,6 @@ public class Grid : MonoBehaviour
                         Gizmos.color = Color.black;
                         Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .2f));
                     }
-
-
-
                 }
             }
         }
