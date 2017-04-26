@@ -109,13 +109,13 @@ public class Grid : MonoBehaviour
                     if (n.walkable == false)
                     {
                         Gizmos.color = Color.red;
-                        Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .05f));
+                        Gizmos.DrawWireCube(n.worldPosition, Vector3.one * (nodeDiameter - .05f));
                         
                     }
                     else
                     {
                         Gizmos.color = Color.white;
-                        Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .05f));
+                        Gizmos.DrawWireCube(n.worldPosition, Vector3.one * (nodeDiameter - .05f));
                     }
 
                     if (path != null && path.Contains(n))
