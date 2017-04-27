@@ -35,21 +35,29 @@ public class Grid : MonoBehaviour
         }
     }
 
-    void CreateGrid()
+    public void CreateGrid()
     {
-        grid = new Node[gridSizeX, gridSizeY];
+        try
+        {
+            grid = new Node[gridSizeX, gridSizeY];
+        }
+        catch (System.OverflowException)
+        {
+            print("X: " + gridSizeX + "Y:" + gridSizeY);
+            throw;
+        }
         Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x / 2 - Vector3.forward * gridWorldSize.y / 2;
 
         for (int x = 0; x < gridSizeX; x++)
         {
             for (int y = 0; y < gridSizeY; y++)
             {
-                AddNodeToGrid(worldBottomLeft, x, y);
+                _AddNodeToGrid(worldBottomLeft, x, y);
             }
         }
     }
 
-    private void AddNodeToGrid(Vector3 worldBottomLeft, int x, int y)
+    void _AddNodeToGrid(Vector3 worldBottomLeft, int x, int y)
     {
         Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
         bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius - 0.1f, unwalkableMask));
