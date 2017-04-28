@@ -60,7 +60,7 @@ public class Grid : MonoBehaviour
     void _AddNodeToGrid(Vector3 worldBottomLeft, int x, int y)
     {
         Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
-        bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius - 0.1f, unwalkableMask));
+        bool walkable = (Physics.CheckSphere(worldPoint, nodeRadius - 0.1f, unwalkableMask));
         grid[x, y] = new Node(walkable, worldPoint, x, y);
     }
 
@@ -123,9 +123,9 @@ public class Grid : MonoBehaviour
             {
                 foreach (Node n in grid)
                 {
-                    if (n.walkable == false)
+                    if (n.walkable)
                     {
-                        Gizmos.color = Color.red;
+                        Gizmos.color = Color.green;
                         Gizmos.DrawWireCube(n.worldPosition, Vector3.one * (nodeDiameter - .05f));
                     }
 
