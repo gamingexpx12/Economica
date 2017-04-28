@@ -101,6 +101,17 @@ public class Grid : MonoBehaviour
         return grid[x, y];
     }
 
+    bool _IsCardinalNeighbour(int thisX, int thisY, int neighbourX, int neighbourY)
+    {
+        var diff = new Vector2(neighbourX, neighbourY) - new Vector2(thisX, thisY);
+
+        if (diff == new Vector2(1, 0)) return true;
+        if (diff == new Vector2(-1, 0)) return true;
+        if (diff == new Vector2(0, 1)) return true;
+        if (diff == new Vector2(0, -1)) return true;
+
+        return false;
+    }
 
     void OnDrawGizmos()
     {
