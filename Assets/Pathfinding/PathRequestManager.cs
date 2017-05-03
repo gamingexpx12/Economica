@@ -28,6 +28,7 @@ public class PathRequestManager : MonoBehaviour
             print("Pathfinding - Component not placed");
         }
         PathRequest newRequest = new PathRequest(pathStart, pathEnd, callback);
+        print(newRequest);
         instance.pathRequestQueue.Enqueue(newRequest);
         instance.TryProcessNext();
     }
@@ -60,6 +61,11 @@ public class PathRequestManager : MonoBehaviour
             pathEnd = _end;
             callback = _callback;
 
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + ": " + pathStart + "," + pathEnd;
         }
     }
 }
