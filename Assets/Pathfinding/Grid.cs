@@ -7,7 +7,6 @@ public class Grid : MonoBehaviour
     public bool onlyDisplayPathGizmos;
     public LayerMask unwalkableMask;
     public Vector2 gridWorldSize;
-    [Range(0.1f, 100)]
     public List<Node> path;
     public bool updateGrid;
     public GameSettings settings;
