@@ -14,13 +14,16 @@ public class Grid : MonoBehaviour
 
     Node[,] grid;
     float nodeRadius;
-    float nodeDiameter { get { return nodeRadius * 2; } }
-    int gridSizeX { get { return Mathf.RoundToInt(gridWorldSize.x / nodeDiameter); } }
-    int gridSizeY { get { return Mathf.RoundToInt(gridWorldSize.y / nodeDiameter); } }
+    float nodeDiameter;
+    int gridSizeX;
+    int gridSizeY;
 
     void Awake()
     {
         nodeRadius = settings.GridSize / 2;
+        nodeDiameter = nodeRadius * 2;
+        gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
+        gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
     }
     void Start()
     {
@@ -42,6 +45,8 @@ public class Grid : MonoBehaviour
 
         if (sizeX <= 0) sizeX = 1;
         if (sizeY <= 0) sizeY = 1;
+
+        grid = new Node[sizeX, sizeY];
 
         Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x / 2 - Vector3.forward * gridWorldSize.y / 2;
 
