@@ -37,20 +37,17 @@ public class Grid : MonoBehaviour
 
     public void CreateGrid()
     {
-        try
-        {
-            grid = new Node[gridSizeX, gridSizeY];
-        }
-        catch (System.OverflowException)
-        {
-            print("X: " + gridSizeX + "Y:" + gridSizeY);
-            throw;
-        }
+        var sizeX = gridSizeX;
+        var sizeY = gridSizeY;
+
+        if (sizeX <= 0) sizeX = 1;
+        if (sizeY <= 0) sizeY = 1;
+
         Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x / 2 - Vector3.forward * gridWorldSize.y / 2;
 
-        for (int x = 0; x < gridSizeX; x++)
+        for (int x = 0; x < sizeX; x++)
         {
-            for (int y = 0; y < gridSizeY; y++)
+            for (int y = 0; y < sizeY; y++)
             {
                 _AddNodeToGrid(worldBottomLeft, x, y);
             }
