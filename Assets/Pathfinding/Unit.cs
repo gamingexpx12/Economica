@@ -21,6 +21,10 @@ public class Unit : MonoBehaviour
             StopCoroutine("FollowPath");
             StartCoroutine("FollowPath");
         }
+        else
+        {
+            print("No path found");
+        }
     }
 
     public IEnumerator FollowPath()
