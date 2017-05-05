@@ -78,7 +78,7 @@ public class Grid : MonoBehaviour
         neighbours.Add(grid[x + 1, y]);
         neighbours.Add(grid[x - 1, y]);
         neighbours.Add(grid[x, y + 1]);
-        neighbours.Add(grid[x, y + 1]);
+        neighbours.Add(grid[x, y - 1]);
 
         return neighbours;
     }
