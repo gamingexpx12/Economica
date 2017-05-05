@@ -32,6 +32,6 @@ public class PathDebugger : MonoBehaviour {
     void DrawCube(Vector3 center, Color color)
     {
         Gizmos.color = color;
-        Gizmos.DrawWireCube(center, Vector3.one * 4 );
+        Gizmos.DrawWireCube(center, Vector3.one * 3.9f );
     }
 }
