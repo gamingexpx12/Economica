@@ -280,6 +280,7 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 5
   path: []
+  LookForPath: 1
 --- !u!114 &114885797862216176
 MonoBehaviour:
   m_ObjectHideFlags: 1
