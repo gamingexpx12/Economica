@@ -6,12 +6,8 @@ public class Unit : MonoBehaviour
     public Transform target;
     public float speed = 5.0F;
     public Vector3[] path;
+    public bool LookForPath;
     int targetIndex;
-
-    void Start()
-    {
-        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
-    }
 
     public void OnPathFound(Vector3[] newpath, bool pathSuccessful)
     {
@@ -46,7 +42,17 @@ public class Unit : MonoBehaviour
             }
 
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
+            transform.LookAt(currentWaypoint);
             yield return null;
+        }
+    }
+
+    void Update()
+    {
+        if (LookForPath & path.Length >= 0)
+        {
+            PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+            LookForPath = false;
         }
     }
 
