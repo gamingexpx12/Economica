@@ -45,6 +45,8 @@ public class RailTool : MonoBehaviour {
             cursorDragStart = cursorPosition;
         }
 
+        
+
         //Choose which drawing method to use.
         if (SharedLibrary.VectorLocationEqual(cursorDragStart, cursorPosition))
         {
@@ -57,6 +59,10 @@ public class RailTool : MonoBehaviour {
         //_ghosting.Ghost(cursorObject, lineData.direction, lineData.instances);
         _ghosting.CreateGhostTrack(cursorObject, lineData.trackDirection, lineData.instances);
 
+        if (Input.GetButtonUp(UseButton))
+        {
+            BuildRail(lineData.trackDirection);
+        }
     }
 
     private void FixedUpdate () {
@@ -76,5 +82,11 @@ public class RailTool : MonoBehaviour {
         {
             Gizmos.DrawSphere(lineData.instances[i], 0.3f);
         }
+    }
+
+    public void BuildRail(TrackDirection direction)
+    {
+
+        //Rail.MakeRailInstance(cursorObject, transform, , direction);
     }
 }
